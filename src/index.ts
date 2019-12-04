@@ -12,18 +12,17 @@ const config: any = {
     mode: Phaser.Scale.ENVELOP,
     parent: 'app',
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: 750,
-    height: 1334,
-    min: {
-      width: 750,
-      height: 1334
-    },
+    width: 640,
+    height: 360,
+    min: { width: 640, height: 360 },
     max: {
-      width: 750,
-      height: 1334
+      width: 640,
+      height: 360
     }
   },
-  scene
+  scene,
+  title: '西班牙教学游戏',
+  pixelArt: false
 }
 
 window.game = new Phaser.Game(config)
