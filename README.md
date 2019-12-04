@@ -1,6 +1,6 @@
 # 学习选择类游戏
 
-演示地址： https://liurongqing.github.io/phaser3-spanish-teaching
+演示地址： https://liurongqing.github.io/phaser3-spanish-teaching/
 
 ---
 
