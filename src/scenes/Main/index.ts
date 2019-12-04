@@ -121,20 +121,20 @@ export default class Main extends Phaser.Scene {
         duration: 200,
         paused: true
       })
-      item.on('pointerdown', () => {
+      item.once('pointerdown', () => {
         const result = this.processAnswer(this.words[i].spanish)
         if (result) {
           console.log('success..')
-          item.correctTween.play() // TODO restart 这个版本无效
+          item.correctTween.play() // TODO paused: true 时 ，restart 无效
         } else {
           console.log('wrong..')
-          item.wrongTween.play() // TODO restart 这个版本无效
+          item.wrongTween.play() // TODO paused: true 时 ，restart 无效
         }
 
         this.showNextQuestion()
       })
       item.on('pointerover', function() {
-        item.alphaTween.play() // TODO restart 这个版本无效
+        item.alphaTween.play() // TODO paused: true 时 ，restart 无效
       })
       item.on('pointerout', function() {
         item.alphaTween.stop()
