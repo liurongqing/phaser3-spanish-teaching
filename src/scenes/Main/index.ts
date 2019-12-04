@@ -6,11 +6,13 @@ export default class Main extends Phaser.Scene {
   wordText: any
   correctSound: any // 成功的声音
   wrongSound: any // 失败的声音
+  isPlaying: boolean
   constructor() {
     super('mainScene')
   }
 
   init() {
+    this.isPlaying = false
     this.words = [
       {
         key: 'building',
@@ -102,7 +104,10 @@ export default class Main extends Phaser.Scene {
         duration: 300,
         paused: true,
         yoyo: true,
-        ease: 'Quad.easeInOut'
+        ease: 'Quad.easeInOut',
+        onComplete: () => {
+          this.isPlaying = false
+        }
       })
 
       item.wrongTween = this.tweens.add({
@@ -113,7 +118,10 @@ export default class Main extends Phaser.Scene {
         angle: 90,
         paused: true,
         yoyo: true,
-        ease: 'Quad.easeInOut'
+        ease: 'Quad.easeInOut',
+        onComplete: () => {
+          this.isPlaying = false
+        }
       })
       item.alphaTween = this.tweens.add({
         targets: item,
@@ -121,7 +129,9 @@ export default class Main extends Phaser.Scene {
         duration: 200,
         paused: true
       })
-      item.once('pointerdown', () => {
+      item.on('pointerdown', () => {
+        if (this.isPlaying) return
+        this.isPlaying = true
         const result = this.processAnswer(this.words[i].spanish)
         if (result) {
           console.log('success..')
